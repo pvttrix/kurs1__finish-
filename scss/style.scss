@@ -22,6 +22,10 @@ body {
   background-color: $body-bg;
   margin: 0;
 }
+
+footer {
+  flex-shrink: 0;
+}
 .container {
   max-width: 1170px;
   width: 100%;
@@ -46,17 +50,20 @@ ul {
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
+
   &__title {
     @include adaptiv-font(36, 26);
     font-weight: 300;
-    white-space: nowrap;
-    font-family: $secondary-ff;
+    word-wrap: break-word;
+    font-family: $body-ff;
     line-height: normal;
   }
   &__text {
     font-family: $body-ff;
     font-size: 16px;
     font-weight: 300;
+    padding: 5px;
+    margin-left: 5px;
   }
   &__first {
     min-height: 100vh;
@@ -110,9 +117,9 @@ ul {
     @media screen and (max-width: 767px) {
       display: block;
       position: fixed;
-      z-index: 10000;
+      z-index: 150;
       right: 10px;
-      top: 20px;
+      top: 15px;
       width: 30px;
       height: 20px;
       &.clicked {
@@ -193,7 +200,7 @@ ul {
     display: flex;
     align-items: center;
     text-transform: uppercase;
-    font-family: $secondary-ff;
+    font-family: $body-ff;
     font-size: 1.4rem;
     cursor: pointer;
     border: none;
@@ -250,7 +257,7 @@ ul {
   &__logo-link {
     color: $primary-color;
     text-transform: uppercase;
-    @include adaptiv-font(24, 10);
+    @include adaptiv-font(24, 18);
     &:hover {
       color: $hover-color;
     }
@@ -278,8 +285,8 @@ ul {
       @include tr;
       &.active {
         opacity: 1 !important;
-        width: 200px;
-        height: 70vh;
+        width: 100%;
+        height: 100%;
       }
     }
   }
@@ -292,7 +299,7 @@ ul {
   }
   &__link {
     display: inline-block;
-    font-family: $secondary-ff;
+    font-family: $body-ff;
     color: $primary-color;
     text-transform: uppercase;
     font-size: 16px;
@@ -367,7 +374,7 @@ ul {
 .btn {
   display: inline-block;
   padding: 20px 40px;
-  font-family: $secondary-ff;
+  font-family: $body-ff;
   text-transform: uppercase;
   background-color: $secondary-color;
   border: none;
@@ -399,7 +406,7 @@ ul {
   flex-wrap: wrap;
   color: #fff;
   &__title {
-    font-family: Aleo, serif;
+    font-family: $body-ff;
     @include adaptiv-font(36, 22);
   }
 }
@@ -424,7 +431,7 @@ ul {
   padding: 50px 30px;
   text-align: left;
   background-color: rgba(0, 0, 0, 0.85);
-  font-family: "Josefin Sans", sans-serif;
+
   &__country {
     font-size: 20px;
     font-weight: 300;
@@ -538,4 +545,90 @@ ul {
     @include hover();
   }
 }
-// info }}
+
+// <!----- About us ----->
+.section {
+  background-color: $secondary-color;
+  text-align: center;
+  &--gray {
+    background-color: #fbfbfb;
+    min-height: auto;
+    padding: 7em 0;
+  }
+
+  &--bg {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgba(240, 255, 255, 0.21);
+    color: $secondary-color;
+    min-height: auto;
+  }
+  &__title-info {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+  &__subtitle {
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  &__content {
+    padding: 60px 170px 30px;
+    border: $border-width solid $primary-color;
+    border-top: none;
+    position: relative;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      @include posA($top: 0, $left: 0, $delta_x: 0, $delta_y: 0);
+      width: 27%;
+      border-top: $border-width solid $primary-color;
+    }
+    &::after {
+      left: auto;
+      right: 0;
+    }
+    @media screen and (max-width: 768px) {
+      padding: 30px !important;
+    }
+  }
+  &__content > &__title {
+    position: absolute;
+    @include posA($top: 0);
+    margin: 0;
+    max-width: 44%;
+    max-height: 6.8rem;
+    overflow: hidden;
+  }
+  &--bg &__content {
+    border-color: $primary-color;
+    &::before,
+    &::after {
+      border-color: $primary-color;
+    }
+  }
+  .feature {
+    background-color: inherit;
+  }
+}
+
+.partners {
+  margin: 0 -10px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1200px) {
+  .partners {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+.partner {
+  margin: 10px;
+}
